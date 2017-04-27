@@ -10,6 +10,14 @@ body {
     padding-top: 90px;
 }
 
+/* Wrap a (anchor) in span with this class to change cursor while still having "pointer: no-events;" */
+.disabler {
+    content: '';
+    position: relative;
+    display: inline-block;
+    cursor: not-allowed;
+}
+
 /* CUSTOMIZE THE NAVBAR
 -------------------------------------------------- */
 /* Navbar tweaks */
@@ -41,30 +49,545 @@ body {
 }
 
 
-/* CUSTOMIZE JUMBOTRONS
+/* HOMEPAGE JUMBOTRON CAROUSEL
 -------------------------------------------------- */
-/* Declare heights because of positioning of div element */
-.jumbotron {
-    position: relative;
+
+/* Carousel base class */
+.jumbotron-carousel {
     height: 500px;
-    margin-top: -20px;
+    margin-top: -20px; /* tikenn: clever hack to keep carousels butted against navbar, but everything else having a 20px spacing */
+    margin-bottom: 60px;
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+    z-index: 10;
+}
+
+/* Declare heights because of positioning of div element */
+.jumbotron-carousel .item {
+    height: 500px;
     background-color: #777;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 }
 
-.jumbotron > div {
+.jumbotron-carousel .carousel-inner > .item > img {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    height: 500px;
 }
 
-.jumbotron h1 {
-    color: white;
-    text-shadow: 4px 4px 5px #000;
+/* Left-align caption */
+.jumbotron-carousel .carousel-caption {
+    text-align: left;
 }
+
+/* turn off the nasty href text-decoration */
+.jumbotron-carousel .carousel-caption a {
+    color: #fff;
+    text-decoration: none;
+    -webkit-transition: color .25s ease-in-out;
+            transition: color .25s ease-in-out;
+}
+
+/* Give some indication that text is special */
+.jumbotron-carousel.carousel-caption a:hover {
+    color: #d0def4;
+    -webkit-transition: color .25s ease-in-out;
+    transition: color .25s ease-in-out;
+}
+
+.jumbotron-carousel .carousel-caption h1,
+.jumbotron-carousel .carousel-caption p {
+     text-shadow: 3px 3px 5px #262626;
+}
+
+/* CUSTOMIZE JUMBOTRONS
+-------------------------------------------------- */
+.jumbotron {
+    margin-top: -20px;
+}
+
+.jumbotron-gradient {
+    background-image: -webkit-linear-gradient(top, #719bdd 0%, #fff 100%);
+    background-image:      -o-linear-gradient(top, #719bdd 0%, #fff 100%);
+    background-image:        -webkit-gradient(linear, left top, left bottom, from(#719bdd), to(#fff));
+    background-image:         linear-gradient(to bottom, #719bdd 0%, #fff 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff719bdd', endColorstr='#ffffffff', GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+    background-repeat: repeat-x;
+}
+
+.jumbotron-img {
+    background-color: #777;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.jumbotron-img h1,
+.jumbotron-img h2,
+.jumbotron-img h3 {
+    color: white;
+    text-shadow: 5px 5px 5px #262626;
+}
+
+.jumbotron .btn {
+    margin-top: 20px;
+}
+
+/* HEADER CUSTOMIZATIONS
+-------------------------------------------------- */
+.share-icons a {
+    margin-left: 4px;
+}
+
+/* VERTICAL CENTERING
+-------------------------------------------------- */
+
+/* Apply to bootstrap row to vertically center all bootstrap columns inside */
+@media screen and (min-width: 768px) {
+    .vcenter > div {
+        float: none;
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: -4px; /* Hack to prevent column from wrapping */
+    }
+}
+
+.extra-padding {
+    padding-bottom: 20px;
+}
+
+/* Vertical center all cells in bootstrap table */
+.vcenter-table th, .vcenter-table td {
+    vertical-align: middle !important;
+}
+
+/* HOMEPAGE KEYNOTE CAROUSEL
+-------------------------------------------------- */
+.keynote-carousel .carousel-indicators {
+    position: relative;
+    bottom: 0;
+}
+
+.keynote-carousel .carousel-control {
+    background-image: none;
+}
+
+.keynote-carousel .carousel-control .icon-prev,
+.keynote-carousel .carousel-control .icon-next,
+.keynote-carousel .carousel-control .glyphicon-chevron-left,
+.keynote-carousel .carousel-control .glyphicon-chevron-right {
+    color: #9a9a9a;
+}
+
+.keynote-carousel .carousel-indicators li {
+    border: 1px solid #9a9a9a;
+}
+
+.keynote-carousel .carousel-indicators .active {
+    background-color: #9a9a9a;
+}
+
+.keynote-carousel .carousel-caption {
+    position: relative;
+    left: inherit;
+    right: inherit;
+    bottom: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: inherit;
+    text-shadow: none;
+}
+
+/* MEETING
+-------------------------------------------------- */
+.btn-hotel {
+    margin-top: 40px;
+}
+
+@media screen and (max-width: 767px) {
+    .btn-hotel {
+        margin-top: 20px;
+    }
+}
+
+/* SUBMISSIONS -- icon and logo alignment
+-------------------------------------------------- */
+.submission-header {
+    margin-top: 40px;
+}
+
+.list-icon {
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.partner-logo-box {
+    position: relative;
+    margin: auto;
+    width: 100%;
+    max-width: 165px;
+}
+
+.partner-logo-box::after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+}
+
+.partner-logo-box .content {
+    position: absolute;
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+.partner-logo-box img {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+}
+/* AGENDA -- keeping the table columns even
+-------------------------------------------------- */
+.btn-agenda-day {
+    white-space: normal;
+    margin-top: 5px;
+}
+
+.agenda-table {
+    margin-bottom: 75px;
+}
+
+.agenda-table tr td:nth-child(1) {
+    width: 15%;
+}
+
+.agenda-table tr td:nth-child(2) {
+    width: 85%;
+}
+
+@media screen and (max-width: 768px) {
+
+    .agenda-table tr td:nth-child(1) {
+        width: 30%;
+    }
+
+    .agenda-table tr td:nth-child(2) {
+        width: 70%;
+    }
+}
+
+.agenda-day {
+    display: inline-block;
+    width: 100%;
+}
+
+.agenda-thumbnail {
+    width: 150px;
+}
+
+.keynote-thumbnail {
+    width: 80px;
+}
+
+.agenda-thumbnail,
+.keynote-thumbnail {
+    max-width: none;
+    margin: 0 15px 15px 0;
+
+}
+
+#overflow-glitch {
+    overflow: hidden;
+}
+
+.keynote-info {
+    overflow: hidden;
+}
+
+@media screen and (max-width: 768px) {
+    .keynote-info {
+        clear: both;
+    }
+}
+
+.fa-user-md {
+    color: #2a5dae;
+}
+
+@media screen and (min-width: 767px) {
+    .agenda-panel-col {
+        display: inline-block;
+    }
+}
+
+.panel-moderator {
+    border: 5px solid #2a5dae;
+}
+
+/* Allows container to wrap position: absolute; elements */
+.agenda-container {
+    position: relative;
+}
+
+/* Affix */
+.affix {
+    top: 50px;
+    width: inherit;
+    padding-right: 0;
+    background-color: #fff;
+    z-index: 10;
+}
+
+/*@media screen and (max-width: 768px) {
+    .affix {
+        width: 100%;
+    }
+}*/
+
+.affix .page-header,
+.affix-bottom .page-header {
+    margin-bottom: 0;
+    font-size: 1.4em;
+}
+
+.affix-bottom {
+    position: absolute;
+    width: 100%;
+    padding-right: 30px;
+    background-color: #fff;
+    z-index: 10;
+}
+
+/* Bottom Navigation Bar for Returning to Top */
+.top-navigation {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 60px;
+    bottom: 0;
+    z-index: 10;
+    background-color: #a6a6a6;
+    color: #5a5a5a;
+    text-align: center;
+    cursor: pointer;
+}
+
+.top-navigation p {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+@media screen and (max-width: 768px) {
+    .top-navigation {
+        height: 50px;
+    }
+
+    .top-navigation {
+        font-size: 1.1em;
+    }
+}
+
+
+/* SPEAKERS
+-------------------------------------------------- */
+a.anchor {
+    display: block;
+    position: relative;
+    top: -75px;
+    visibility: hidden;
+}
+
+/* PANELS
+-------------------------------------------------- */
+.panel-participant-row {
+    margin-bottom: 50px;
+}
+
+@media screen and (min-width: 767px) {
+    .panel-participant-row h4 {
+        margin-top: 0;
+    }
+}
+
+/* SPONSORS
+-------------------------------------------------- */
+.sponsor-wrapper {
+    text-align: center;
+}
+
+.sponsor-wrapper > a {
+    margin: 25px auto;
+    display: inline-block;
+}
+
+.sponsor {
+    height: 200px;
+    width: 200px;
+    border-radius: 20px;
+    background-color: #e0e0e0;
+    box-shadow: 5px 5px 5px 5px #777;
+}
+
+.sponsor .blur-background {
+    /* centering trick */
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+
+    height: 180px;
+    width: 180px;
+    border-radius: 20px;
+    background-color: white;
+
+    /* all this and more, just for a blur...*/
+    -webkit-filter: url("#blur");
+    -moz-filter: url("#blur");
+    -o-filter: url("#blur");
+    -ms-filter: url("#blur");
+    filter: url("#blur");
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+    z-index: 0;
+}
+
+.sponsor img,
+.sponsor p {
+    position: relative;
+    right: 0;
+    left: 0;
+    margin: auto;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+
+    vertical-align: middle;
+    z-index: 10;
+}
+
+.sponsor img {
+    width: 150px;
+}
+
+.sponsor p {
+    font-size: 2.5em;
+}
+
+/* This is a css hack and will need to be updated when safari utilizes normal transforms */
+@media screen and (min-color-index:0) and(-webkit-min-device-pixel-ratio:0) { 
+    @media {
+        .sponsor img { 
+            transform: translateY(-100%);
+            -webkit-transform: translateY(-100%);
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .sponsor {
+        height: 100px;
+        width: 100px;
+    }
+
+    .sponsor .blur-background {
+        height: 90px;
+        width: 90px;
+    }
+
+    .sponsor img {
+        width: 75px;
+    }
+
+    .sponsor p {
+        font-size: 1.25em;
+    }
+}
+
+.sponsor-platinum {
+    background-color: #e5e4e2;
+}
+
+.sponsor-gold {
+    background-color: #fedb86;
+}
+
+.sponsor-silver {
+    background-color: #c0c0c0;
+}
+
+.sponsor-bronze {
+    background-color: #cd7f32;
+}
+
+.sponsor-support {
+    background-color: #c4c4ff;
+}
+
+.sponsor-panel {
+    background-color: #9dff9d;
+}
+
+/* BUBBLE IMAGES
+-------------------------------------------------- */
+.bubble-image {
+    background-color: #777;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    margin:auto auto 10px;
+
+    /* Hover is controlled via Javascript */
+    -webkit-transition: opacity 0.5s ease;
+    -moz-transition: opacity 0.5s ease;
+    -o-transition: opacity 0.5s ease;
+    -ms-transition: opacity 0.5s ease;
+    transition: opacity 0.5s ease;
+}
+
+.bubble-sm,
+.bubble-md {
+    display: inline-block;
+}
+
+.bubble-sm {
+    margin: 10px 10px 10px 0;
+    width: 100px;
+    max-width: 40%;
+    text-align: center;
+    vertical-align: top;
+}
+
+.bubble-sm .bubble-image {
+    height: 75px;
+    width: 75px;
+    border-radius: 75px;
+}
+
+.bubble-md {
+    margin: 25px auto;
+}
+
+.bubble-md .bubble-image {
+    height: 100px;
+    width: 100px;
+    border-radius: 100px;
+}
+
 
 /* CUSTOMIZE THE FOOTER
 -------------------------------------------------- */
@@ -84,4 +607,156 @@ body {
 /* fixed footer height */
 .site-footer, .page-wrapper:after {
     height: 120px;
+}
+
+/* Medstro social icon construct */
+.btn-medstro {
+    color: #fff;
+    background-color: #1b75bc;
+    border-color:rgba(0,0,0,0.2)
+}
+
+.btn-medstro:hover,
+.btn-medstro:focus,
+.btn-medstro:active,
+.btn-medstro.active,
+.open>.dropdown-toggle.btn-medstro {
+    color:#fff;
+    background-color: #15598f;
+    border-color:rgba(0,0,0,0.2);
+}
+
+.btn-medstro:active,
+.btn-medstro.active,
+.open>.dropdown-toggle.btn-medstro {
+    background-image:none;
+}
+
+.btn-medstro.disabled,
+.btn-medstro[disabled],
+fieldset[disabled] .btn-medstro,
+.btn-medstro.disabled:hover,
+.btn-medstro[disabled]:hover,fieldset[disabled] .btn-medstro:hover,
+.btn-medstro.disabled:focus,.btn-medstro[disabled]:focus,fieldset[disabled] .btn-medstro:focus,
+.btn-medstro.disabled:active,.btn-medstro[disabled]:active,fieldset[disabled] .btn-medstro:active,.btn-medstro.disabled.active,
+.btn-medstro[disabled].active,fieldset[disabled] .btn-medstro.active {
+    background-color: #1b75bc;
+    border-color:rgba(0,0,0,0.2);
+}
+
+.btn-medstro .badge{
+    color:#1b75bc;
+    background-color:#fff;
+}
+
+
+/* BOOTSTRAP CLEARFIX FIX (http://www.bluthemes.com/blog/3/clearing-bootstrap-3-columns)
+-------------------------------------------------- */
+@media (max-width:767px){
+
+    /* Column clear fix */
+    .col-lg-1:nth-child(12n+1),
+    .col-lg-2:nth-child(6n+1),
+    .col-lg-3:nth-child(4n+1),
+    .col-lg-4:nth-child(3n+1),
+    .col-lg-6:nth-child(2n+1),
+    .col-md-1:nth-child(12n+1),
+    .col-md-2:nth-child(6n+1),
+    .col-md-3:nth-child(4n+1),
+    .col-md-4:nth-child(3n+1),
+    .col-md-6:nth-child(2n+1),
+    .col-sm-1:nth-child(12n+1),
+    .col-sm-2:nth-child(6n+1),
+    .col-sm-3:nth-child(4n+1),
+    .col-sm-4:nth-child(3n+1),
+    .col-sm-6:nth-child(2n+1) {
+        clear: none;
+    }
+
+    .col-xs-1:nth-child(12n+1),
+    .col-xs-2:nth-child(6n+1),
+    .col-xs-3:nth-child(4n+1),
+    .col-xs-4:nth-child(3n+1),
+    .col-xs-6:nth-child(2n+1){
+        clear: left;
+    }
+}
+
+
+/*  Tablet  */
+@media (min-width:767px){
+
+    /* Column clear fix */
+    .col-lg-1:nth-child(12n+1),
+    .col-lg-2:nth-child(6n+1),
+    .col-lg-3:nth-child(4n+1),
+    .col-lg-4:nth-child(3n+1),
+    .col-lg-6:nth-child(2n+1),
+    .col-md-1:nth-child(12n+1),
+    .col-md-2:nth-child(6n+1),
+    .col-md-3:nth-child(4n+1),
+    .col-md-4:nth-child(3n+1),
+    .col-md-6:nth-child(2n+1){
+        clear: none;
+    }
+
+    .col-sm-1:nth-child(12n+1),
+    .col-sm-2:nth-child(6n+1),
+    .col-sm-3:nth-child(4n+1),
+    .col-sm-4:nth-child(3n+1),
+    .col-sm-6:nth-child(2n+1){
+        clear: left;
+    }
+}
+
+
+/*  Medium Desktop  */
+@media (min-width:992px){
+
+    /* Column clear fix */
+    .col-lg-1:nth-child(12n+1),
+    .col-lg-2:nth-child(6n+1),
+    .col-lg-3:nth-child(4n+1),
+    .col-lg-4:nth-child(3n+1),
+    .col-lg-6:nth-child(2n+1),
+    .col-sm-1:nth-child(12n+1),
+    .col-sm-2:nth-child(6n+1),
+    .col-sm-3:nth-child(4n+1),
+    .col-sm-4:nth-child(3n+1),
+    .col-sm-6:nth-child(2n+1){
+        clear: none;
+    }
+    .col-md-1:nth-child(12n+1),
+    .col-md-2:nth-child(6n+1),
+    .col-md-3:nth-child(4n+1),
+    .col-md-4:nth-child(3n+1),
+    .col-md-6:nth-child(2n+1){
+        clear: left;
+    }
+}
+
+
+/*  Large Desktop  */
+@media (min-width:1200px){
+
+    /* Column clear fix */
+    .col-md-1:nth-child(12n+1),
+    .col-md-2:nth-child(6n+1),
+    .col-md-3:nth-child(4n+1),
+    .col-md-4:nth-child(3n+1),
+    .col-md-6:nth-child(2n+1),
+    .col-sm-1:nth-child(12n+1),
+    .col-sm-2:nth-child(6n+1),
+    .col-sm-3:nth-child(4n+1),
+    .col-sm-4:nth-child(3n+1),
+    .col-sm-6:nth-child(2n+1){
+        clear: none;
+    }
+    .col-lg-1:nth-child(12n+1),
+    .col-lg-2:nth-child(6n+1),
+    .col-lg-3:nth-child(4n+1),
+    .col-lg-4:nth-child(3n+1),
+    .col-lg-6:nth-child(2n+1){
+        clear: left;
+    }
 }
