@@ -109,6 +109,13 @@ body {
 -------------------------------------------------- */
 .jumbotron {
     margin-top: -20px;
+    height: 500px;
+}
+
+.jumbotron-center {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .jumbotron-gradient {
@@ -133,6 +140,8 @@ body {
 .jumbotron-img h3 {
     color: white;
     text-shadow: 5px 5px 5px #262626;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .jumbotron .btn {
